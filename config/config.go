@@ -94,7 +94,7 @@ func main() {
 
 	router := gin.Default()
 	router.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "%s\n", &TestConfig.Get())
+		c.String(http.StatusOK, "%s\n", TestConfig.Get())
 	})
 	router.Run("127.0.0.1:8999")
 }
