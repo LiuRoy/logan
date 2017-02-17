@@ -17,7 +17,8 @@ var (
 )
 
 func init() {
-	flag.IntVar(&workerNum, "worker", 1, "runtime MAXPROCS value")
+	cpuNum := runtime.NumCPU()
+	flag.IntVar(&workerNum, "worker", cpuNum, "runtime MAXPROCS value")
 	flag.BoolVar(&releaseMode, "release", false, "gin mode")
 	flag.StringVar(&host, "host", "127.0.0.1", "server host")
 	flag.IntVar(&port, "port", 8090, "server port")
