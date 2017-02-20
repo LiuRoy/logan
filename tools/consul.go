@@ -58,7 +58,6 @@ func WatchSingle(key string, param *WatchedParam) {
 		v, ok := raw.(*consulApi.KVPair)
 		if ok && v != nil {
 			newValue := string(v.Value)
-			fmt.Println(newValue)
 			param.Set(newValue)
 		}
 	}

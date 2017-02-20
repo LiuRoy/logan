@@ -1,3 +1,4 @@
 gopkg.in/gin-gonic/gin.v1
 github.com/hashicorp/consul/api
 github.com/hashicorp/consul/watch
+github.com/prometheus/client_golang/prometheus

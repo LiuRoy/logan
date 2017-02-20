@@ -45,9 +45,10 @@ func main() {
 	}
 
 	router := gin.New()
-	router.Use(gin.Logger(), tools.Recovery(sentryClient))
+	router.Use(gin.Logger(), tools.Recovery(sentryClient), tools.Prometheus())
 
 	// add endpoint
+	router.GET("/kingkong/metrics", tools.LatestMetrics)
 	router.GET("/ping", func(c *gin.Context) {
 		panic(fmt.Errorf("%s", "aaaa"))
 		c.String(http.StatusOK, "pong")
