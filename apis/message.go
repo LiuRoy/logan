@@ -1,6 +1,7 @@
 package apis
 
 import (
+	"strconv"
 	"net/http"
 	"github.com/gin-gonic/gin"
 
@@ -50,7 +51,8 @@ func GetMessage(c *gin.Context) {
 	if !exist {
 		c.JSON(http.StatusBadRequest, gin.H{"result": "bad params"})
 	} else {
-		message := model.GetMessage(uint(messageId))
+		msgId, _ := strconv.ParseUint(messageId, 10, 0)
+		message := model.GetMessage(uint(msgId))
 		c.JSON(http.StatusOK, gin.H{"result": "ok", "message": *message})
 	}
 }
