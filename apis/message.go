@@ -4,7 +4,7 @@ import (
 	"net/http"
 	"github.com/gin-gonic/gin"
 
-	"logan/models"
+	"logan/model"
 )
 
 type message struct {
@@ -24,7 +24,7 @@ func AddMessage(c *gin.Context) {
 	if c.BindJSON(param) {
 		switch param.Type {
 		case "follow":
-			models.AddMessage(
+			model.AddMessage(
 				param.Type, param.InitiatorId,  "aaa",
 				"bbb",  param.ConsumerId, "",
 				string(param.IsFollow), "", "", "")
