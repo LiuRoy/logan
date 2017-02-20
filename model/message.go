@@ -5,17 +5,17 @@ import (
 )
 
 type Message struct {
-	MsgId uint `gorm:"primary_key"`
-	Type string `gnorm:"type:varchar(32)"`
-	InitiatorId uint
-	InitiatorName string `gnorm:"type:varchar(255)"`
-	InitiatorPortrait string `gnorm:"type:varchar(255)"`
-	ConsumerId uint
-	ResourceId string `gnorm:"type:varchar(255)"`
-	ExtraInfo1 string `gnorm:"type:varchar(512)"`
-	ExtraInfo2 string `gnorm:"type:varchar(512)"`
-	ExtraInfo3 string `gnorm:"type:varchar(512)"`
-	ExtraInfo4 string `gnorm:"type:varchar(512)"`
+	MsgId uint `gorm:"column:msgid;primary_key"`
+	Type string `gnorm:"column:type;type:varchar(32)"`
+	InitiatorId uint `gnorm:"column:initiatorid"`
+	InitiatorName string `gnorm:"column:initiatorname;type:varchar(255)"`
+	InitiatorPortrait string `gnorm:"column:initiatorportrait;type:varchar(255)"`
+	ConsumerId uint `gnorm:"column:consumerid"`
+	ResourceId string `gnorm:"column:resource_id;type:varchar(255)"`
+	ExtraInfo1 string `gnorm:"column:extra_info1;type:varchar(512)"`
+	ExtraInfo2 string `gnorm:"column:extra_info2;type:varchar(512)"`
+	ExtraInfo3 string `gnorm:"column:extra_info3;type:varchar(512)"`
+	ExtraInfo4 string `gnorm:"column:extra_info4;type:varchar(512)"`
 	InsertTime time.Time
 }
 

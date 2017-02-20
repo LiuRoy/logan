@@ -49,7 +49,7 @@ func main() {
 	router.Use(gin.Logger(), tools.Recovery(sentryClient), tools.Prometheus())
 
 	// add endpoint
-	router.GET("/metrics", tools.LatestMetrics)
+	router.GET(tools.DefaultMetricPath, tools.LatestMetrics)
 	router.GET("/ping", func(c *gin.Context) {c.String(http.StatusOK, "pong")})
 	router.POST("/message", apis.AddMessage)
 	router.Run(address)

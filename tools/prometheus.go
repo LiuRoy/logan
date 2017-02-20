@@ -36,7 +36,7 @@ func Prometheus() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		endPoint := c.Request.URL.String()
 		fmt.Printf(endPoint)
-		if endPoint != DefaultMetricPath {
+		if endPoint == DefaultMetricPath {
 			c.Next()
 		} else {
 			start := time.Now()
