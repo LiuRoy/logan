@@ -7,6 +7,10 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/getsentry/raven-go"
+
+	"logan/config"
+	"logan/toolkits/sentry"
 )
 
 var (
@@ -35,10 +39,19 @@ func main() {
 		gin.SetMode(gin.ReleaseMode)
 	}
 
-	router := gin.Default()
+	sentryClient, err := raven.New(config.SentryDsn)
+	if err != nil {
+		panic(err)
+	}
+
+	router := gin.New()
+	router.Use(gin.Logger(), sentry.Recovery(sentryClient))
 
 	// add endpoint
-	router.GET("/ping", func(c *gin.Context) {c.String(http.StatusOK, "pong")})
+	router.GET("/ping", func(c *gin.Context) {
+		panic(fmt.Errorf("%s", "aaaa"))
+		c.String(http.StatusOK, "pong")
+	})
 
 	router.Run(address)
 }
