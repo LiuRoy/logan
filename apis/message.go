@@ -8,9 +8,9 @@ import (
 )
 
 type message struct {
-	Type string `json:"type" bind:"required"`
-	InitiatorId uint `json:"initiator" bind:"required"`
-	ConsumerId uint `json:"consumer" bind:"required"`
+	Type string `json:"type" binding:"required"`
+	InitiatorId uint `json:"initiator" binding:"required"`
+	ConsumerId uint `json:"consumer" binding:"required"`
 	ResourceId string `json:"resource_id"`
 	IsFollow bool `json:"isfollow"`
 	Gcid string `json:"gcid"`
@@ -42,5 +42,15 @@ func AddMessage(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"result": "ok"})
 	} else {
 		c.JSON(http.StatusBadRequest, gin.H{"result": "bad params"})
+	}
+}
+
+func GetMessage(c *gin.Context) {
+	messageId, exist := c.GetQuery("message_id")
+	if !exist {
+		c.JSON(http.StatusBadRequest, gin.H{"result": "bad params"})
+	} else {
+		message := model.GetMessage(uint(messageId))
+		c.JSON(http.StatusOK, gin.H{"result": "ok", "message": *message})
 	}
 }

@@ -51,6 +51,8 @@ func main() {
 	// add endpoint
 	router.GET(tools.DefaultMetricPath, tools.LatestMetrics)
 	router.GET("/ping", func(c *gin.Context) {c.String(http.StatusOK, "pong")})
+
 	router.POST("/message", apis.AddMessage)
+	router.GET("/message", apis.GetMessage)
 	router.Run(address)
 }

@@ -6,17 +6,17 @@ import (
 
 type Message struct {
 	MsgId uint `gorm:"column:msgid;primary_key"`
-	Type string `gnorm:"column:type;type:varchar(32)"`
-	InitiatorId uint `gnorm:"column:initiatorid"`
-	InitiatorName string `gnorm:"column:initiatorname;type:varchar(255)"`
-	InitiatorPortrait string `gnorm:"column:initiatorportrait;type:varchar(255)"`
-	ConsumerId uint `gnorm:"column:consumerid"`
-	ResourceId string `gnorm:"column:resource_id;type:varchar(255)"`
-	ExtraInfo1 string `gnorm:"column:extra_info1;type:varchar(512)"`
-	ExtraInfo2 string `gnorm:"column:extra_info2;type:varchar(512)"`
-	ExtraInfo3 string `gnorm:"column:extra_info3;type:varchar(512)"`
-	ExtraInfo4 string `gnorm:"column:extra_info4;type:varchar(512)"`
-	InsertTime time.Time
+	Type string `gorm:"column:type;type:varchar(32)"`
+	InitiatorId uint `gorm:"column:initiatorid"`
+	InitiatorName string `gorm:"column:initiatorname;type:varchar(255)"`
+	InitiatorPortrait string `gorm:"column:initiatorportrait;type:varchar(255)"`
+	ConsumerId uint `gorm:"column:consumerid"`
+	ResourceId string `gorm:"column:resource_id;type:varchar(255)"`
+	ExtraInfo1 string `gorm:"column:extra_info1;type:varchar(512)"`
+	ExtraInfo2 string `gorm:"column:extra_info2;type:varchar(512)"`
+	ExtraInfo3 string `gorm:"column:extra_info3;type:varchar(512)"`
+	ExtraInfo4 string `gorm:"column:extra_info4;type:varchar(512)"`
+	InsertTime time.Time `gorm:"column:insert_time" sql:"DEFAULT:current_timestamp"`
 }
 
 func (Message) TableName() string {
@@ -39,5 +39,12 @@ func AddMessage(msgType string, initiatorId uint, initiatorName string,
 		ExtraInfo4: extraInfo4,
 	}
 	DbConnection.Create(&message)
+	DbConnection.NewRecord(message)
+	return &message
+}
+
+func GetMessage(messageId uint) *Message {
+	message := Message{}
+	DbConnection.Where("msgid = ?", messageId).First(&message)
 	return &message
 }
