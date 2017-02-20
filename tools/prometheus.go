@@ -11,16 +11,16 @@ import (
 var (
 	historyBuckets = [...]float64{
 		10., 20., 30., 50., 80., 100., 200., 300., 500., 1000., 2000., 3000.}
-	DefaultMetricPath string = "/kingkong/metrics"
+	DefaultMetricPath string = "/logan/metrics"
 
 	ResponseCounter = prometheus.NewCounterVec(prometheus.CounterOpts{
-		Name: "kingkong_request_total",
+		Name: "logan_request_total",
 		Help: "Total request counts"}, []string{"method", "endpoint"})
 	ErrorCounter = prometheus.NewCounterVec(prometheus.CounterOpts{
-		Name: "kingkong_error_total",
+		Name: "logan_error_total",
 		Help: "Total Error counts"}, []string{"method", "endpoint"})
 	ResponseLatency = prometheus.NewHistogramVec(prometheus.HistogramOpts{
-		Name: "kingkong_response_latency_millisecond",
+		Name: "logan_response_latency_millisecond",
 		Help: "Response latency (millisecond)",
 		Buckets: historyBuckets[:]}, []string{"method", "endpoint"})
 )

@@ -10,7 +10,7 @@ import (
 
 const (
 	address string = "10.33.1.132:8500"
-	prefix string = "preview/service/kingkong"
+	prefix string = "preview/service/logan"
 )
 
 var KV *consulApi.KV

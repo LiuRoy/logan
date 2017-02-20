@@ -11,6 +11,7 @@ import (
 
 	"logan/config"
 	"logan/tools"
+	"logan/apis"
 )
 
 var (
@@ -48,11 +49,8 @@ func main() {
 	router.Use(gin.Logger(), tools.Recovery(sentryClient), tools.Prometheus())
 
 	// add endpoint
-	router.GET("/kingkong/metrics", tools.LatestMetrics)
-	router.GET("/ping", func(c *gin.Context) {
-		panic(fmt.Errorf("%s", "aaaa"))
-		c.String(http.StatusOK, "pong")
-	})
-
+	router.GET("/metrics", tools.LatestMetrics)
+	router.GET("/ping", func(c *gin.Context) {c.String(http.StatusOK, "pong")})
+	router.POST("/message", apis.AddMessage)
 	router.Run(address)
 }

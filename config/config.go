@@ -14,9 +14,7 @@ var (
 
 
 func init() {
-	MysqlUrl = tools.GetSingle("mysql_config")
+	MysqlUrl = tools.GetSingle("mysql_url")
 	RedisCluster = tools.GetSingle("redis_cluster")
 	SentryDsn = tools.GetSingle("sentry_dsn")
-
-	tools.WatchSingle("test_config", &TestConfig)
 }
