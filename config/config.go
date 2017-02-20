@@ -1,7 +1,7 @@
 package config
 
 import (
-	"logan/toolkits/consul"
+	"logan/tools"
 )
 
 
@@ -9,14 +9,14 @@ var (
 	MysqlUrl string
 	RedisCluster string
 	SentryDsn string
-	TestConfig consul.WatchedParam
+	TestConfig tools.WatchedParam
 )
 
 
 func init() {
-	MysqlUrl = consul.GetSingle("mysql_config")
-	RedisCluster = consul.GetSingle("redis_cluster")
-	SentryDsn = consul.GetSingle("sentry_dsn")
+	MysqlUrl = tools.GetSingle("mysql_config")
+	RedisCluster = tools.GetSingle("redis_cluster")
+	SentryDsn = tools.GetSingle("sentry_dsn")
 
-	consul.WatchSingle("test_config", &TestConfig)
+	tools.WatchSingle("test_config", &TestConfig)
 }

@@ -10,7 +10,7 @@ import (
 	"github.com/getsentry/raven-go"
 
 	"logan/config"
-	"logan/toolkits/sentry"
+	"logan/tools"
 )
 
 var (
@@ -45,7 +45,7 @@ func main() {
 	}
 
 	router := gin.New()
-	router.Use(gin.Logger(), sentry.Recovery(sentryClient))
+	router.Use(gin.Logger(), tools.Recovery(sentryClient))
 
 	// add endpoint
 	router.GET("/ping", func(c *gin.Context) {
