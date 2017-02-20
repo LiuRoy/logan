@@ -2,8 +2,6 @@ package model
 
 import (
 	"time"
-
-	"logan/config"
 )
 
 type Message struct {
@@ -40,6 +38,6 @@ func AddMessage(msgType string, initiatorId uint, initiatorName string,
 		ExtraInfo3: extraInfo3,
 		ExtraInfo4: extraInfo4,
 	}
-	config.DbConnection.Create(&message)
+	DbConnection.Create(&message)
 	return &message
 }

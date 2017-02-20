@@ -1,8 +1,10 @@
-package config
+package model
 
 import (
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+
+	"logan/config"
 )
 
 var (
@@ -10,7 +12,7 @@ var (
 )
 
 func init() {
-	db, err := gorm.Open("mysql", MysqlUrl)
+	db, err := gorm.Open("mysql", config.MysqlUrl)
 	if err != nil {
 		panic(err)
 	}
