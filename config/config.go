@@ -9,7 +9,6 @@ var (
 	MysqlUrl string
 	RedisCluster string
 	SentryDsn string
-	TestConfig tools.WatchedParam
 )
 
 

@@ -19,15 +19,23 @@ type message struct {
 	reply string `json:"reply"`
 }
 
+func bool2string(b bool) string {
+	if b {
+		return "1"
+	} else {
+		return "0"
+	}
+}
+
 func AddMessage(c *gin.Context) {
 	var param message
-	if c.BindJSON(param) {
+	if c.BindJSON(&param) == nil {
 		switch param.Type {
 		case "follow":
 			model.AddMessage(
 				param.Type, param.InitiatorId,  "aaa",
 				"bbb",  param.ConsumerId, "",
-				string(param.IsFollow), "", "", "")
+				bool2string(param.IsFollow), "", "", "")
 		default:
 			panic("unknown type")
 		}

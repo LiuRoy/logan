@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
+	"fmt"
 )
 
 var (
@@ -34,6 +35,7 @@ func init() {
 func Prometheus() gin.HandlerFunc {
 	return func(c *gin.Context) {
 		endPoint := c.Request.URL.String()
+		fmt.Printf(endPoint)
 		if endPoint != DefaultMetricPath {
 			c.Next()
 		} else {
