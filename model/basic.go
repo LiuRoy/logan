@@ -22,7 +22,7 @@ func init() {
 	DbConnection = db
 
 	var clusterList []string
-	if json.Unmarshal([]byte(config.RedisCluster), &clusterList) == nil{
+	if json.Unmarshal([]byte(config.RedisCluster), &clusterList) != nil{
 		panic("redis cluster configure decode error")
 	}
 	clusterOpt := redis.ClusterOptions{Addrs: clusterList}
