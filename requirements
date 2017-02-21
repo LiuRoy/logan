@@ -4,3 +4,4 @@ github.com/hashicorp/consul/watch
 github.com/prometheus/client_golang/prometheus
 github.com/jinzhu/gorm
 github.com/jinzhu/gorm/dialects/mysql
+gopkg.in/redis.v5

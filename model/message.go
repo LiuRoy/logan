@@ -40,6 +40,8 @@ func AddMessage(msgType string, initiatorId uint, initiatorName string,
 	}
 	DbConnection.Create(&message)
 	DbConnection.NewRecord(message)
+
+	RedisConnection.Set("aaaaaaa", message.MsgId, 0)
 	return &message
 }
 
